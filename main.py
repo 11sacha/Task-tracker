@@ -36,7 +36,7 @@ def main(page: Page):
                             height=80,width=80,
                             border_radius=40,
                           content=CircleAvatar(opacity=0.8,
-                foreground_image_url="https://www.google.com/imgres?imgurl=https%3A%2F%2Fpng.pngitem.com%2Fpimgs%2Fs%2F522-5220445_anonymous-profile-grey-person-sticker-glitch-empty-profile.png&tbnid=R95gPjPVfLFphM&vet=12ahUKEwjKjdrRy5WFAxXcXLgEHcnZACEQMygNegQIARBx..i&imgrefurl=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhmhxiJi_anonymous-profile-grey-person-sticker-glitch-empty-profile%2F&docid=DW6FqC3PlmkyYM&w=282&h=280&q=profile%20image%20circular%20anonymous&hl=es-419&ved=2ahUKEwjKjdrRy5WFAxXcXLgEHcnZACEQMygNegQIARBx"
+                foreground_image_url="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
             )
                           )
                           )
@@ -75,12 +75,43 @@ def main(page: Page):
         )
     )
 
+    # tasks = ["Grocery shopping", "Morning workout", "Doctor's appointment", "Finish book", "Organize workspace", "Write journal", "Meal prep", "Practice new skill/hobby"]
+    # tasks_card = Column(
+    #     height=375,
+    #     scroll='auto',
+    # )
+
+    # for index, task in enumerate(tasks):
+    #     tasks_card.controls.append(
+    #         Container(height=70,
+    #                   width=400,
+    #                   bgcolor=BG,
+    #                   border_radius=35,
+    #                   padding=padding.only(
+    #                     left=20,
+    #                     top=23
+    #                   ),
+    #                   content=CustomCheckBox(
+    #                     color=PINK,
+    #                     label=task,
+    #                     label_color='white'
+    #                     ))
+    #     )
+
     tasks = Column(
         height=375,
         scroll='auto',
     )
 
-    for i in range(8):
+    task_list = ["Grocery shopping", "Morning workout", "Doctor's appointment", "Finish book", "Organize workspace", "Write journal", "Meal prep", "Practice new skill/hobby"]
+
+    
+    for task_label in task_list:
+        task_checkbox = CustomCheckBox(
+            color=PINK,
+            label=task_label,
+            label_color='white'
+        )
         tasks.controls.append(
             Container(height=70,
                       width=400,
@@ -90,17 +121,13 @@ def main(page: Page):
                         left=20,
                         top=23
                       ),
-                      content=CustomCheckBox(
-                        color=PINK,
-                        label='Task to do',
-                        label_color='white'
-                        )),
-        )
+                      content=task_checkbox
+        ))
     
     categories_card = Row(
         scroll='auto'
     )
-    categories = ['Business', 'Family', 'Friends']
+    categories = ['Friends', 'Family', 'Business' ]
     for index, category in enumerate(categories):
         categories_card.controls.append(
             Container(
@@ -111,7 +138,7 @@ def main(page: Page):
                 border_radius=20,
                 content=Column(
                     controls=[
-                        Text('40 Tasks',
+                        Text(str(index + 5) + ' Tasks',
                              color='white'),
                         Text(category,
                              color='white'),
@@ -201,13 +228,14 @@ def main(page: Page):
                             on_click=lambda e: restore(e),
                             content=Text(
                             value='<',
+                            color='white',
                             size=17)
                 )
                     ]
                 ),
                 Container(height=20),
                 circle,
-                Text('John Doe', size=32, weight='bold'),
+                Text('John Doe', size=32, weight='bold', color='white'),
                 Container(height=20),
                 Row(controls=[
                     Icon(icons.FAVORITE_BORDER_SHARP, color='white60'),
@@ -229,7 +257,7 @@ def main(page: Page):
                     height=200,
                 ),
                 Text('Good',color=FG,font_family='poppins',),
-                Text('Consistency',size=12,)
+                Text('Consistency',size=12, color=FG)
             ]
         )
     )
